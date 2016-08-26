@@ -1,23 +1,31 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Movie History</title>
-  <link rel="stylesheet" type="text/css" src="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+ <title>Movie History</title>
+ <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+ <link rel="stylesheet" type="text/css" src="bower_components/bootstrap/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-<h1>Hello Brenda!</h1>
 
-  <div id="addToBtn" class="output">
-    <button>Add to Watchlist</button>
-  </div>
-  <div id="watchBtn" class="output">
-    <button>Watchlist</button>
-  </div>
-
-
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<div class="container">
+   <nav class="row box">
+     <div class="nav-wrapper">
+       <ul id="nav-mobile" class="left nav__links">
+         <li><a href="#" title="">Find New Movies</a></li>
+         <li id="add-song"><a href="#" title="">Search Your Movies</a></li>
+         <li><a class="last" href="#" title="">Login/Register/Logout</a></li>
+       </ul>
+     </div>
+   </nav>
+   <div class="uiContainer row">
+     <section class="uiContainer--wrapper col s9">
+       <button id="auth-btn" type="button">Sign in with Google</button>
+     </section>
+   </div>
+ </div>
+ <div id="output"></div>
+<script type="text/javascript" src="src/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="dist/app.js"></script>
-
 </body>
 </html>
