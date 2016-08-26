@@ -19,6 +19,15 @@ function getMovieInfo() {
   });
 }
 
+$("#auth-btn").click(function() {
+  console.log("clicked auth");
+  login()
+  .then(function(result) {
+    let user = result.user;
+    console.log('logged in as', user.uid);
+  })
+});
+
 getMovieInfo();
 
 document.getElementById("addToBtn").addEventListener("click", clickBtn);
