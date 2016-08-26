@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     // Change the b-fy task to add a transform task
     browserify: {
       js: {
-          src: ['./js/main.js'],
+          src: ['js/main.js'],
           dest: 'dist/app.js'
       },
       options: {
