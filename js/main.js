@@ -1,10 +1,10 @@
 "use strict";
 
-var movieData = {
+console.log("this is connected");
 
-}
 
 function getMovieInfo() {
+
   return new Promise (function (resolve, reject) {
     $.ajax({
       url: "http://www.omdbapi.com/?t=Home+Alone&y=&plot=short&r=json",
@@ -17,10 +17,29 @@ function getMovieInfo() {
 getMovieInfo();
 
 
-function getMovieInfo(movieData) {
-  let searchedMovies = "";
 
-  for (var i = search.length - 1; i >= 0; i--) {
-    let searchedMovies = data.search.Title
-  }
-}
+
+
+// $("#auth-btn").click(function() {
+//   console.log("clicked auth");
+//   login()
+//   .then(function(result) {
+//     let user = result.user;
+//     console.log('logged in as', user.uid);
+//   });
+// });
+
+
+
+
+// document.getElementById("addToBtn").addEventListener("click", clickBtn);
+
+// function clickBtn(event) {
+//   console.log("print the event object", event);
+// }
+
+// document.getElementById("watchBtn").addEventListener("click", clickBtn2);
+
+// function clickBtn2(event) {
+//   console.log("print the event object", event);
+// }
