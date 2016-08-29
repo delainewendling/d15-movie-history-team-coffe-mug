@@ -28,7 +28,7 @@ let movieList = function (searchedMovieData) {
       </ul>
     </div>
 
-    <button class ="save_new_btn" id="${movieId}">Save</button>`;
+    <button class="save_new_btn" id="${movieId}">Save</button>`;
  }
       $("#output").append(outputString);
 };
@@ -79,66 +79,34 @@ getMovieInfo(); // this will be called from the search button event listener - t
 
 ///// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
 $(document).on("click", ".save_new_btn", function() {
-  let movieObj = buildMovieToSave();
-  console.log(movieObj);
-  addMovie(movieObj)
-  .then(function(movieId) {
-    console.log("movie ID", movieId);
+  console.log("movie id", this.id);
+  let movieId = this.id;
+        console.log(`http://www.omdbapi.com/?i=${movieId}&plot=short&r=json`);
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        url: `http://www.omdbapi.com/?i=${movieId}&plot=short&r=json`,
+        type: "GET",
+        data: JSON.stringify(),
+        dataType: "json"
+      }).done(function(movieInfoFromId) {
+        resolve(movieId);
+    })
+    .then(function(movieInfoFromId) {
+      addMovie(movieInfoFromId);
+      console.log("movie info from ID", movieInfoFromId);
+    });
   });
 });
 
 
 //////BUILD MOVIE OBJ TO BE ABLE TO ADD TO FB
-function buildMovieToSave(movieData) {
-    let movieObj = {
-    "title": movieData.Search[0].Title,
-    "year": movieData.Search[0].Year,
-    "imdbID": movieData.Search[0].imdbID
-  };
-  console.log(movieObj);
-  return movieObj;
-}
-
-
-
-
-// function movieListDisplay(searchedMovieData) {
-//   let $movieListDisplay =
-//   $(`<div>
-//     <ul class="movie-list">
-//     </ul>
-//   </div>`);
-//   $(".uiContainer--wrapper").html($movieListDisplay);
-//   for (let movie in searchedMovieData ) {
-//     let currentMovie = searchedMovieData[movie],
-//         $movieListItem = $("<li>", {class: "movie-list__item"}),
-//         $title = $("<span/>", {class: "movie-title"}).text(currentMovie.title),
-//         $movieListData = $("<ul/>", {class: "movie-list__item--data"}),
-//         $movieListEdit = $("<a>", {"data-edit-id": movie, class: "edit-btn waves-effect waves-light btn", text: "edit" }),
-//         $movieListDelete = $("<a>", {"data-delete-id": movie, class: "delete-btn waves-effect waves-light btn", text: "delete" });
-//         // Same as `<a id="${movie}" class="delete-btn waves-effect waves-light btn">delete</a>`
-
-//     $songListData.append(
-//       `<li>${currentMovie.title}</li>
-//       <li>${currentMovie.year}</li>
-//       <li>${currentMovie.id}</li>`);
-
-//     $(".movie-list").append($songListItem.append($title));
-//     $(".movie-list").append($songListItem.append($songListData).append($songListDelete).append($songListEdit));
-//   }
+// function buildMovieToSave(movieData) {
+//     let movieObj = {
+//     "title": movieData.Search[0].Title,
+//     "year": movieData.Search[0].Year,
+//     "imdbID": movieData.Search[0].imdbID
+//   };
+//   console.log(movieObj);
+//   return movieObj;
 // }
 
-// function getMovieActors() {
-//   console.log("this is working");
-//   return new Promise (function (resolve, reject) {
-//     $.ajax({
-//       url: "http://www.omdbapi.com/?t=King+Kong&i=tt0360717&r=json",
-//     }).done (function(data){
-//       // console.log(data);
-//       resolve(data);
-//       console.log("tittle", data.Actors);
-//       searchedMovieData(data);
-//     });
-//   });
-// }
-// getMovieActors();
