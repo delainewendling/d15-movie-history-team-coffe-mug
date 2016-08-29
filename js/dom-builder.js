@@ -11,12 +11,12 @@ let movieList = function (searchedMovieData) {
           let poster = searchedMovieData.Search[i].Poster,
               title = searchedMovieData.Search[i].Title,
               year = searchedMovieData.Search[i].Year,
-              // Actors = searchedMovieData.[i].Actors;
-              movieId = searchedMovieData.Search[i].imdbID;
-              // Actor = searchedMovieData.Search[i].Year;
+              movieId = searchedMovieData.Search[i].imdbID,
+              watched = searchedMovieData.Search[i].Watched,
+              favorite = searchedMovieData.Search[i].Favorite;
       console.log("Id", movieId);
    outputString += `
-    <div class="col-md-4 eachList">
+    <div class="col-md-3 movieList">
       <ul>
         <li><img src= ${poster}></li></br>
         <li>${"Movie Title is: "} ${title}</li></br>
@@ -24,10 +24,9 @@ let movieList = function (searchedMovieData) {
         </li></br>
       </ul>
     </div>
-
-    <button class="save_new_btn" id="${movieId}">Save</button>`;
+    <button class="save_new_btn" id="${movieId}">Add to Watch List</button>`;
  }
       $("#output").append(outputString);
 };
 
-module.exports = movieList;
+module.exports = {movieList};
