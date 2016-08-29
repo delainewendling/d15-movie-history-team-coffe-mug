@@ -25,19 +25,27 @@ $("#auth-btn").click(function() {
   .then(function(result) {
     let user = result.user;
     console.log('logged in as', user.uid);
-  })
+  });
 });
+
+// begin the view/hidden area
+
+$(document).ready(function(){
+        $('.text_container').addClass("hidden");
+
+        $('.text_container').click(function() {
+            var $this = $(this);
+
+            if ($this.hasClass("hidden")) {
+                $(this).removeClass("hidden").addClass("visible");
+
+            } else {
+                $(this).removeClass("visible").addClass("hidden");
+            }
+        });
+    });
+
+// end the view/hidden area
 
 getMovieInfo();
 
-document.getElementById("addToBtn").addEventListener("click", clickBtn);
-
-function clickBtn(event) {
-  console.log("print the event object", event);
-}
-
-document.getElementById("watchBtn").addEventListener("click", clickBtn2);
-
-function clickBtn2(event) {
-  console.log("print the event object", event);
-}

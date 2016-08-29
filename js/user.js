@@ -1,4 +1,5 @@
 "use strict";
+
 let firebase = require("./firebaseConfig"),
  provider = new firebase.auth.GoogleAuthProvider();
  console.log(provider);
