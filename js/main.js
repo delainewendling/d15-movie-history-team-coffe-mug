@@ -50,7 +50,7 @@ let movieList = function (searchedMovieData) {
 function addMovie(movieObjToAdd) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: "https://movie-hisotry-group-project.firebaseio.com/movies.json",
+      url: "https://movie-history-a800b.firebaseio.com/movies.json",
       type: "POST",
       data: JSON.stringify(movieObjToAdd),
       dataType: "json"
@@ -97,6 +97,7 @@ $(document).on("click", ".save_new_btn", function() {
     });
   });
 });
+
 
 
 //////BUILD MOVIE OBJ TO BE ABLE TO ADD TO FB
