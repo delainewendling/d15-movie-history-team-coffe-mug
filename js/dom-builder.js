@@ -15,18 +15,30 @@ let movieList = function (searchedMovieData) {
               watched = searchedMovieData.Search[i].Watched,
               favorite = searchedMovieData.Search[i].Favorite;
       console.log("Id", movieId);
-   outputString += `
-    <div class="col-md-3 movieList">
-      <ul>
-        <li><img src= ${poster}></li></br>
-        <li>${"Movie Title is: "} ${title}</li></br>
-        <li>${"Movie year is: "} ${year}</li></br>
-        </li></br>
-      </ul>
-    </div>
-    <button class="save_new_btn" id="${movieId}">Add to Watch List</button>`;
+   outputString +=
+      `<div class="col s5 card horizontal" style>
+       <div class="card-image">
+         <img src=${poster} width="170" height="250">
+       </div>
+       <div class="card-stacked">
+         <div class="card-content">
+           <ul>
+             <li>${"Movie name: "} ${title}</li>
+             <li>${"Year released: "} ${year}</li>
+           </ul>
+         </div>
+         <div class="card-action">
+           <a  class="add-ToWatch" id="${movieId}" href="#">Unwatched</a>
+         </div>
+       </div>
+     </div>`;
  }
       $("#output").append(outputString);
 };
 
 module.exports = {movieList};
+
+
+             // <li>${"Type: "} ${Type}</li>
+             // <li>${"Rating: "} ${"3"}</li>
+             // <li>${"Watched/Not: "} ${"true"}</li>

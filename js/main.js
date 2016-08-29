@@ -11,7 +11,7 @@ let $ = require("jquery"),
     // getMovieInfo = require("./api-interaction.js"),
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
-$(document).on("click", ".save_new_btn", function() {
+$(document).on("click", ".add-ToWatch", function() {
   console.log("movie id", this.id);
   let movieId = this.id;
     return new Promise(function (resolve, reject) {
@@ -24,7 +24,7 @@ $(document).on("click", ".save_new_btn", function() {
         resolve(movieId);
     })
     .then(function(movieInfoFromId) {
-      addMovie(movieInfoFromId);
+      addMovie.addMovie(movieInfoFromId);
       console.log("movie info from ID", movieInfoFromId);
     });
   });
