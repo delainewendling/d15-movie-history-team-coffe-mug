@@ -45,24 +45,5 @@ let getSavedMovies = function (id) {
 };
 
 
-// let addRatingToMovie = function(rating){
-//   getMovieInfo(rating)
-//   .then (function (movieData){
-//     let rating = $("#rating").val()
-//     if(rating === 10){
-//       movieData.[key].Favorite = true;
-//     }
-//   })
-// };
-
-// let addToWatchedList = function (addWatchedTag){
-//   getMovieInfo(watched)
-//   .then (function (watched){
-//     let watched = $("#watched").val()
-//     if(watched === yes){
-//       movieData.[key].Watched = true;
-//     }
-//   })
-// };
 
 module.exports = {addMovie, getSavedMovies, deleteMovie};
