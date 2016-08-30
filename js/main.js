@@ -7,7 +7,8 @@ let $ = require("jquery"),
     userId = "",
     firebase = require("firebase/app"),
     login = require("./user.js"),
-    movieTemplate = require('../templates/movieDisplay.hbs');
+    template = require('./template.js'),
+    starRating = require('./star-rating.js');
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
 $(document).on("click", ".add-ToWatch", function() {
@@ -39,9 +40,12 @@ $(document).on("keypress", "#userSearch", function(e){
   var key = e.which || e.keyCode;
     if (key === 13) {
       // Fix me
-      addMovie.getSavedMovies(userId);
-      // I'm cool
-      getMovie(userId);
+      // addMovie.getSavedMovies(userId);
+      // I work when the title is used to search
+      getMovie()
+      .then ((movieData)=>{
+        template.showMovies(movieData);
+      })
       // Print to DOM
       domBuilder.movieList(data);
     }

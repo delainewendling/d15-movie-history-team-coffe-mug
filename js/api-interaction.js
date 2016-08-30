@@ -7,10 +7,10 @@ let $ = require("jquery"),
 
 //////// Call to get movie titles by search from OMDB
 let getMovieInfo = function() {
-  let userSearch = $("#userSearch").val();
+  let userSearch = $("#userSearch").val().replace(' ', '+');
   return new Promise (function (resolve, reject) {
     $.ajax({
-      url: `http://www.omdbapi.com/?s=${userSearch}&r=json&type=movie`,
+      url: `http://www.omdbapi.com/?s=${userSearch}&type=movie`,
     }).done (function(data){
       console.log(data);
       resolve(data);
