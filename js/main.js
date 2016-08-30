@@ -46,9 +46,8 @@ $(document).on("click", ".userRating", function(e, rating){
   let movieRating = $(e.target).attr("class").split(' ')[0];
   let movieId = $(e.currentTarget).attr('key');
   let movie = finalSearchList[movieId];
-  addMovie.rateMovie(movieId, {rating: movieRating, watched: true);
+  addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
 })
-
 
 /// Serching for Movies by Title, show results when enter is clicked
 $(document).on("keypress", "#userSearch", function(e) {
@@ -102,9 +101,7 @@ $("#auth-btn").click(function() {
   $(".landingPage").addClass('hide');
     login.logInGoogle()
         .then(function(result) {
-            let user = result.user;
-            console.log("logged in user", user.uid);
-            userId = user.uid;
+            userId = result.user.uid;
             $("#auth-btn").addClass('hide');
             $("#auth-btnLogOut").removeClass('hide');
             $(".filters").removeClass('hide');

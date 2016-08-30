@@ -6,6 +6,7 @@ $(document).on({
 },'i');
 
 function starHoverOn(evt) {
+  console.log("hover on");
   let $hoverStar = $(evt.currentTarget);
   $hoverStar.addClass('current-star hover-star');
   $hoverStar.siblings().addClass('hover-star');
@@ -15,6 +16,5 @@ function starHoverOn(evt) {
 function starHoverOff(evt) {
   let $hoverStar = $(evt.currentTarget);
   $hoverStar.removeClass('current-star hover-star');
-  $hoverStar.siblings().removeClass('hover-star');
-  $hoverStar.siblings().removeClass('black-star');
+  $hoverStar.siblings().removeClass('black-star hover-star');
 }
