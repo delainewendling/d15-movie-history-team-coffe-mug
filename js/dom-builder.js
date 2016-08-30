@@ -1,19 +1,17 @@
 "use strict";
 
 let $ = require("jquery");
-    // userID;
-
 
 let movieList = function (searchedMovieData) {
-      let outputString = "";
+  let outputString = "";
 
-    for (let i = 0; i < searchedMovieData.Search.length; i++) {
-          let poster = searchedMovieData.Search[i].Poster,
-              title = searchedMovieData.Search[i].Title,
-              year = searchedMovieData.Search[i].Year,
-              movieId = searchedMovieData.Search[i].imdbID,
-              watched = searchedMovieData.Search[i].Watched,
-              favorite = searchedMovieData.Search[i].Favorite;
+  for (let i = 0; i < 3; i++) {
+    let poster = searchedMovieData.Search[i].Poster,
+        title = searchedMovieData.Search[i].Title,
+        year = searchedMovieData.Search[i].Year,
+        movieId = searchedMovieData.Search[i].imdbID,
+        watched = searchedMovieData.Search[i].Watched,
+        favorite = searchedMovieData.Search[i].Favorite;
    outputString +=
       `<div class="col s5 card horizontal" style>
        <div class="card-image">
