@@ -30,6 +30,7 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.rating = 0;
     movie.uid = userId;
     addMovie.addMovie(movie);
+    domBuilder.saveToast();
 });
 
 
@@ -39,6 +40,7 @@ $(document).on("click", ".delete", function(e) {
     let movieId = $(e.currentTarget).attr('key');
     console.log(movieId);
     addMovie.deleteMovie(movieId);
+    domBuilder.deleteToast()
 });
 
 // RATE MOVIE ON FB
@@ -46,7 +48,8 @@ $(document).on("click", ".userRating", function(e, rating){
   let movieRating = $(e.target).attr("class").split(' ')[0];
   let movieId = $(e.currentTarget).attr('key');
   let movie = finalSearchList[movieId];
-  addMovie.rateMovie(movieId, {rating: movieRating, watched: true);
+  addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
+  domBuilder.ratingToast(movieRating);
 })
 
 
