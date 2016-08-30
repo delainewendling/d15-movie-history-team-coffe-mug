@@ -10,7 +10,7 @@ let $ = require("jquery"),
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
 $(document).on("click", ".add-ToWatch", function() {
-    $("#rating").removeClass("hidden");
+  $("#rating").removeClass("hidden");
     let movieId = this.id;
     return new Promise(function(resolve, reject) {
         $.ajax({
@@ -37,6 +37,8 @@ $(document).on("click", ".delete", function() {
 $(document).on("keypress", "#userSearch", function(e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
+      $(".landingPage").addClass('hide');
+
         // Fix me
         addMovie.getSavedMovies(userId);
         // I'm cool
@@ -50,6 +52,7 @@ $(document).on("keypress", "#userSearch", function(e) {
 //authentication starts here
 // --------------------------------------------
 $("#auth-btn").click(function() {
+  $(".landingPage").addClass('hide');
     login.logInGoogle()
         .then(function(result) {
             let user = result.user;
