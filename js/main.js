@@ -5,7 +5,7 @@ let $ = require("jquery"),
     getMovie = require("./api-interaction.js"),
     domBuilder = require("./dom-builder.js"),
     userId = "",
-    firebase = require("./firebaseConfig.js"),
+    firebase = require("firebase/app"),
     login = require("./user.js");
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
