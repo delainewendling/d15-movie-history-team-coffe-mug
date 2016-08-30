@@ -6,7 +6,6 @@ $(document).on({
 },'i');
 
 function starHoverOn(evt) {
-  console.log("hover on");
   let $hoverStar = $(evt.currentTarget);
   $hoverStar.addClass('current-star hover-star');
   $hoverStar.siblings().addClass('hover-star');
