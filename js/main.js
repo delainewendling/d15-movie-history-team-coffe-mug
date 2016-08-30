@@ -22,6 +22,7 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.rating = 0;
     movie.uid = userId;
     addMovie.addMovie(movie);
+    domBuilder.saveToast();
 });
 
 
@@ -31,6 +32,7 @@ $(document).on("click", ".delete", function(e) {
     let movieId = $(e.currentTarget).attr('key');
     console.log(movieId);
     addMovie.deleteMovie(movieId);
+    domBuilder.deleteToast()
 });
 
 // RATE MOVIE ON FB
@@ -39,7 +41,25 @@ $(document).on("click", ".userRating", function(e, rating){
   let movieId = $(e.currentTarget).attr('key');
   let movie = finalSearchList[movieId];
   addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
+  domBuilder.ratingToast(movieRating);
 })
+
+// CHANGES BREAD CRUMB STATUS ACCORDING TO ACTIVE FILTER
+$('#untracked-btn').on('click',function() {
+  let currentPlace = $('#untracked-btn').html();
+  domBuilder.changeBreadCrumb(currentPlace);
+})
+
+$('#unwatched-btn').on('click',function() {
+  let currentPlace = $('#unwatched-btn').html();
+  domBuilder.changeBreadCrumb(currentPlace);
+})
+
+$('#watched-btn').on('click',function() {
+  let currentPlace = $('#watched-btn').html();
+  domBuilder.changeBreadCrumb(currentPlace);
+})
+
 
 /// Serching for Movies by Title, show results when enter is clicked
 $(document).on("keypress", "#userSearch", function(e) {
