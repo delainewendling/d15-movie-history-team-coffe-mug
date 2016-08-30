@@ -83,7 +83,9 @@ $(document).on("keypress", "#userSearch", function(e) {
         }})
 
 function mainSearch() {
-      let firebaseMovies = {};
+      let firebaseMovies = {},
+          finalSearchList = {},
+          imdbIdArray = [];
       addMovie.getSavedMovies(userId)
         .then(function(data){
           console.log("call to Firebase", data);
@@ -168,11 +170,15 @@ $(document).on('click', '#unwatched-btn', getUnwatched);
 $(document).on('click', '#watched-btn', getWatched);
 
 function getUntracked (){
-  console.log("untracked");
-  filterState = "untracked";
   changeSelectedBtn('untracked-btn');
- //Get rid of saved movies
-  $('.movieCard[saved=true]').parent('.movieDiv').hide();
+  if ($('#userSearch').val()){
+    mainSearch();
+    console.log("untracked");
+   //Get rid of saved movies
+    $('.movieCard[saved=true]').parent('.movieDiv').hide();
+  } else {
+    filterState = "untracked";
+  }
 }
 
 function getUnwatched (){
