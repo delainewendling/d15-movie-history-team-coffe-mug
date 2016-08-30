@@ -15,7 +15,9 @@ let addMovie = require("./db-interaction.js"),
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     userId = firebase.auth().currentUser.uid;
-    console.log("This user has logged in: ",userId);
+    $(".landingPage").hide();
+    $("#auth-btn").hide();
+    $("#auth-btnLogOut").removeClass("hide");
   }
 });
 
