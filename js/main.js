@@ -48,7 +48,6 @@ $(document).on("click", ".delete", function() {
 $(document).on("keypress", "#userSearch", function(e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
-<<<<<<< HEAD
       let firebaseMovies = {};
       addMovie.getSavedMovies(userId)
         .then(function(data){
@@ -70,7 +69,7 @@ $(document).on("keypress", "#userSearch", function(e) {
                     imdbIdArray.splice(index,1);
                     i++;
                     if (i === (arrayLength - 1)) {
-                      console.log("final search list", finalSearchList);
+                      template.showMovies(finalSearchList);
                     }
                   }
                 }
@@ -81,7 +80,7 @@ $(document).on("keypress", "#userSearch", function(e) {
                     finalSearchList[index] = data;
                     i++;
                     if (i === (arrayLength - 1)) {
-                      console.log("final search list", finalSearchList);
+                      template.showMovies(finalSearchList);
                     }
                   })
               })
