@@ -57,6 +57,7 @@ $("#auth-btn").click(function() {
             userId = user.uid;
             $("#auth-btn").addClass('hide');
             $("#auth-btnLogOut").removeClass('hide');
+            $(".filters").removeClass('hide');
         });
 });
 
@@ -65,4 +66,7 @@ $("#auth-btnLogOut").on("click", function() {
     login.logOutGoogle();
     $("#auth-btnLogOut").addClass('hide');
     $("#auth-btn").removeClass('hide');
+    $(".filters").addClass('hide');
+
+    domBuilder.goodbyeToast();
 });
