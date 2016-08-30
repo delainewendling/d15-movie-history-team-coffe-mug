@@ -8,7 +8,6 @@ let addMovie = require("./db-interaction.js"),
     firebase = require("firebase/app"),
     login = require("./user.js"),
     template = require('./template.js'),
-    slider = require('./slider'),
     starRating = require('./star-rating.js'),
     filterState = null;
 
@@ -198,5 +197,19 @@ function getWatched (){
 function changeSelectedBtn (btnId){
   $('.filter').removeClass('teal lighten-5');
   $(`#${btnId}`).addClass('teal lighten-5 selectedBtn');
+}
+
+//Slider functionality
+$(document).on('change', '#ratingSlider', showRatedMovies);
+
+function showRatedMovies(){
+  let ratingValue = $('#ratingSlider').val();
+  $('.range-slider__value').val(ratingValue);
+  console.log("rating", ratingValue);
+  addMovie.getSavedMovies(userId, "rating", ratingValue)
+  .then((movies)=>{
+    console.log("movies with rating", movies);
+    template.showMovies(movies);
+  })
 }
 
