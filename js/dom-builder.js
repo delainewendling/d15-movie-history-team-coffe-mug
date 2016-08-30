@@ -12,7 +12,8 @@ function addAndPrint(state, evt){
 }
 
 function deleteAndPrint (state, evt){
-   $(evt.currentTarget).closest('.movieDiv').hide();
+  $(evt.currentTarget).closest('.movieDiv').hide();
+  deleteToast();
 }
 
 function rateAndPrint (state, evt, userID){
@@ -40,15 +41,15 @@ function slideAndPrint (state, evt){
 }
 
 function goodbyeToast() {
-    Materialize.toast('Thank you for visiting our site!', 4000)
+    Materialize.toast('Thank you for visiting our site!', 3000)
 };
 
 function saveToast() {
-    Materialize.toast('Saved!', 4000)
+    Materialize.toast('Saved!', 2000)
 };
 
 function deleteToast() {
-    Materialize.toast('Deleted!', 4000)
+    Materialize.toast('Deleted!', 2000)
 }
 function ratingToast(movieRating) {
   Materialize.toast(`You rated this ${movieRating}`, 4000)

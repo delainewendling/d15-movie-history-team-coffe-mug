@@ -64,15 +64,5 @@ let getSavedMovies = function (uid, property, value) {
   });
 };
 
-// let getFilteredMovies = function (uid){
-//   return new Promise (function (resolve, reject) {
-//     $.ajax({
-//       url: `https://reel-good-movie-history.firebaseio.com/movies.json?&orderBy=\"uid\"&equalTo=\"${uid}\"&${prop}\"=\"${value}\"`
-//     }).done (function(movieData){
-//       console.log("results?", movieData);
-//       resolve(movieData);
-//     });
-//   });
-// }
 
 module.exports = {addMovie, getSavedMovies, deleteMovie, rateMovie};
