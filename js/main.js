@@ -1,13 +1,13 @@
 "use strict";
 
-let $ = require("jquery"),
-    addMovie = require("./db-interaction.js"),
+let addMovie = require("./db-interaction.js"),
     getMovie = require("./api-interaction.js"),
     domBuilder = require("./dom-builder.js"),
     userId = "",
     firebase = require("firebase/app"),
     login = require("./user.js"),
     template = require('./template.js'),
+    slider = require('./slider'),
     starRating = require('./star-rating.js');
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE

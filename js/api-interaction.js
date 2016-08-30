@@ -2,8 +2,7 @@
 
 console.log("api-interaction.js is connected");
 
-let $ = require("jquery"),
-    domBuilder = require("./dom-builder.js");
+let domBuilder = require("./dom-builder.js");
 
 //////// Call to get movie titles by search from OMDB
 let getMovieInfo = function() {
