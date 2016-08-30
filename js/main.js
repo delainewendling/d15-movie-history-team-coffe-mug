@@ -1,16 +1,12 @@
 "use strict";
 
-console.log("main.js is connected");
-
 let $ = require("jquery"),
     addMovie = require("./db-interaction.js"),
     getMovie = require("./api-interaction.js"),
     domBuilder = require("./dom-builder.js"),
-    userId ="",
+    userId = "",
     firebase = require("./firebaseConfig.js"),
     login = require("./user.js");
-    // userID;
-    // getMovieInfo = require("./api-interaction.js"),
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
 $(document).on("click", ".add-ToWatch", function() {
@@ -19,15 +15,12 @@ $(document).on("click", ".add-ToWatch", function() {
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: `http://www.omdbapi.com/?i=${movieId}&plot=short&r=json`,
-        type: "GET",
-        data: JSON.stringify(),
-        dataType: "json"
+        type: "GET"
       }).done(function(movieInfoFromId) {
         resolve(movieId);
     })
     .then(function(movieInfoFromId) {
       addMovie.addMovie(movieInfoFromId);
-      console.log("movie info from ID", movieInfoFromId);
     });
   });
 });
@@ -44,24 +37,14 @@ $(document).on("click", ".delete", function() {
 $(document).on("keypress", "#userSearch", function(e){
   var key = e.which || e.keyCode;
     if (key === 13) {
+      // Fix me
       addMovie.getSavedMovies(userId);
+      // I'm cool
       getMovie(userId);
+      // Print to DOM
+      domBuilder.movieList(data);
     }
 });
-
-
-// $("#unwatched-btn").click(function{
-//   return new Promise (function (resolve, reject) {
-//     $.ajax({
-//       url: `https://movie-hisotry-group-project.firebaseio.com/movies.json?orderBy="id"&equalTo="${userId}"`
-//     }).done (function(savedMovieData){
-//       console.log(savedMovieData);
-//       resolve(savedMovieData);
-//       domBuilder.movieList(savedMovieData);
-//     });
-//   });
-// })
-
 
 //-------------------------------------------
 //authentication starts here
@@ -77,17 +60,4 @@ $("#auth-btn").click(function() {
    // loadMovies();
  });
 });
-
-// -------------
-
-// let function = addUserIdToMovieObj (userID) {
-//   getMovieInfo(userID)
-//   .then (function(movieData){
-//   var idArr = Object.keys(movieData);
-//   idArr.forEach(function (key){
-//     movieData.[key].userID = key;
-//     })
-//   })
-// }
-
 

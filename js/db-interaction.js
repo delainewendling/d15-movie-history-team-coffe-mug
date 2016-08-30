@@ -9,7 +9,7 @@ let $ = require("jquery"),
 let addMovie = function (movieObjToAdd) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: "https://movie-hisotry-group-project.firebaseio.com/movies.json",
+      url: "https://reel-good-movie-history.firebaseio.com/movies.json",
       type: "POST",
       data: JSON.stringify(movieObjToAdd),
       dataType: "json"
@@ -23,7 +23,7 @@ let addMovie = function (movieObjToAdd) {
 let deleteMovie = function (movieId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: "https://movie-hisotry-group-project.firebaseio.com/movies.json",
+      url: `https://reel-good-movie-history.firebaseio.com/movies/${movieId}.json`,
       type: "DELETE"
     }).done(function(data) {
       resolve(data);
@@ -36,7 +36,7 @@ let getSavedMovies = function (id) {
   console.log("this is the userID", id);
   return new Promise (function (resolve, reject) {
     $.ajax({
-      url: `https://movie-hisotry-group-project.firebaseio.com/movies.json?orderBy="id"&equalTo="${userId}"`
+      url: `https://reel-good-movie-history.firebaseio.com/movies.json?orderBy="id"&equalTo="${id}"`
     }).done (function(savedMovieData){
       console.log(savedMovieData);
       resolve(savedMovieData);
