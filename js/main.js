@@ -40,6 +40,14 @@ $(document).on("click", ".delete", function(e) {
     addMovie.deleteMovie(movieId);
 });
 
+// RATE MOVIE ON FB
+$(document).on("click", ".userRating", function(e, rating){
+  let movieRating = $(e.target).attr("class").split(' ')[0];
+  let movieId = $(e.currentTarget).attr('key');
+  let movie = finalSearchList[movieId];
+  addMovie.rateMovie(movieId, {rating: movieRating});
+})
+
 
 /// Serching for Movies by Title, show results when enter is clicked
 

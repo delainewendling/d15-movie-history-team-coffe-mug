@@ -18,6 +18,25 @@ let addMovie = function (movieObjToAdd) {
   });
 };
 
+// RATE MOVIE
+let rateMovie = function (movieObjToRate, prop) {
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: `https://reel-good-movie-history.firebaseio.com/movies/${movieObjToRate}.json`,
+      type: "PATCH",
+      data: JSON.stringify(prop),
+      dataType: "json"
+    }).done(function(movieId) {
+      resolve(movieId);
+    });
+  });
+};
+
+
+
+
+
+
 /// Saving a specific movie to firebase via save button
 let deleteMovie = function (movieId) {
   return new Promise(function (resolve, reject) {
@@ -66,4 +85,4 @@ $(document).on("click", ".add-ToWatch", function() {
 
 
 
-module.exports = {addMovie, getSavedMovies, deleteMovie};
+module.exports = {addMovie, getSavedMovies, deleteMovie, rateMovie};
