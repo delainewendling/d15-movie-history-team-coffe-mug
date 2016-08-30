@@ -36,10 +36,9 @@ $teal: #26A69A !default;
 
 body {
   font-family: sans-serif;
-  padding: 60px 20px;
-  @media (min-width: 600px) {
-    padding: 60px;
-  }
+  // @media (min-width: 600px) {
+  //   padding: 60px;
+  // }
 }
 
 .range-slider {
