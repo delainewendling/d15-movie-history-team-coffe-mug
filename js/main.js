@@ -45,16 +45,18 @@ $(document).on("click", ".delete", function(e) {
 
 // RATE MOVIE ON FB
 $(document).on("click", ".userRating", function(e, rating){
-  let movieRating = $(e.target).attr("class").split(' ')[0];
+  var movieRating = $(e.target).attr("class").split(' ')[0];
   let movieId = $(e.currentTarget).attr('key');
   let movie = finalSearchList[movieId];
-  addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
-  domBuilder.ratingToast(movieRating);
-  if (filterState === "search") {
-    mainSearch();
-  } else {
-    domBuilder.rateAndPrint(filterState, e, userId);
-  }
+  addMovie.rateMovie(movieId, {rating: movieRating, watched: true})
+  .then(()=>{
+    domBuilder.ratingToast(movieRating);
+    if (filterState === "search") {
+      mainSearch();
+    } else {
+      domBuilder.rateAndPrint(filterState, e, userId);
+    }
+  })
 })
 
 /// Serching for Movies by Title, show results when enter is clicked
@@ -83,14 +85,14 @@ function mainSearch() {
                 console.log("inside if");
                 $("#output").html("<h3 class='center-align'> Movie Not Found! </h3> <p class='center-align'> Search Again </p>");
                 $("#userSearch").val("");
-              }
+              } else {
               let imdbIdArray = [];
-              if (data.Search.length != undefined && data.Search.length > 0){
+              if (data != undefined){
               data.Search.forEach(function(movie, index) {
                 imdbIdArray.push(movie.imdbID);
               });
               let i = 0,
-                arrayLength = imdbIdArray.length;
+              arrayLength = imdbIdArray.length;
               imdbIdArray.forEach(function(ID, index) {
                 for (let savedMovie in firebaseMovies) {
                   if (ID === firebaseMovies[savedMovie].imdbID) {
@@ -98,7 +100,6 @@ function mainSearch() {
                     imdbIdArray.splice(index,1);
                     i++;
                     if (i === (arrayLength - 1)) {
-                      $('#userSearch').val("");
                       template.showMovies(finalSearchList);
                     }
                   }
@@ -110,7 +111,6 @@ function mainSearch() {
                     finalSearchList[index] = data;
                     i++;
                     if (i === (arrayLength - 1)) {
-                      $('#userSearch').val("");
                       template.showMovies(finalSearchList);
                     }
                   })
@@ -119,8 +119,9 @@ function mainSearch() {
               finalSearchList = fireBaseMovies;
               template.showMovies(finalSearchList);
             }
-            })
-          })
+          }
+      })
+    })
 }
 
 //-------------------------------------------
@@ -179,6 +180,10 @@ function getUntracked (){
   console.log("untracked");
   //Get rid of saved movies
   $('.movieCard[saved=true]').parent('.movieDiv').hide();
+  console.log("div length", $('#output').length);
+  if ($('.movieDiv').length < 2){
+    $("#output").html("<h3 class='center-align'> No Untracked Movies </h3> <p class='center-align'> Search Again </p>");
+  }
 }
 
 function getUnwatched (){
@@ -234,11 +239,12 @@ function showRatedMovies(){
   .then((movies)=>{
     console.log("movies with that rating", movies);
     if (Object.keys(movies).length === 0) {
-      $("#output").html(`<h3 class='center-align'> No Movies with a rating of ${ratingValue} yet </h3>`);
+      $("#output").html(`<h3 class='center-align'> You don't have any movies with a rating of ${ratingValue} yet </h3>`);
     } else {
       template.showMovies(movies);
       domBuilder.slideAndPrint();
     }
   })
 }
+
 
