@@ -6,7 +6,8 @@ let $ = require("jquery"),
     domBuilder = require("./dom-builder.js"),
     userId = "",
     firebase = require("firebase/app"),
-    login = require("./user.js");
+    login = require("./user.js"),
+    movieTemplate = require('../templates/movieDisplay.hbs');
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
 $(document).on("click", ".add-ToWatch", function() {
