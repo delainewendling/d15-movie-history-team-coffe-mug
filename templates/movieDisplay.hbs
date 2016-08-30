@@ -1,5 +1,5 @@
 {{#each this}}
-<div class="col s5 card horizontal" style>
+<div class="col s5 card horizontal">
    <div class="card-image">
      <img src={{Poster}} width="170" height="250">
    </div>
@@ -12,12 +12,11 @@
       </div>
       {{/if}}
        <ul>
-         <li> {{Title}}</li>
-         <li> Year released: {{Year}}</li>
-         <li> Cast: {{Actors}} </li>
+         <li> <h4> {{Title}}</h4></li>
+         <li> <strong> Year released: </strong>{{Year}}</li>
+         <li> <strong> Cast: </strong> {{Actors}} </li>
        </ul>
      </div>
-     <div>
       {{#if saved}}
         <span class="rating">
           <i key="{{@key}}" class="1 material-icons userRating {{activateStars rating 1}}">star</i>
@@ -37,5 +36,6 @@
         </div>
       {{/if}}
     </div>
-   </div>
- </div>
+</div>
+{{/each}}
+

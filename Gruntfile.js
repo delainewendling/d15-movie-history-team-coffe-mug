@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        predef: [ "document", "console" ],
+        predef: [ "document", "console", "$"],
         esnext: true,
         globalstrict: true,
         globals: {},
@@ -46,5 +46,5 @@ module.exports = function(grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['browserify', 'jshint', 'sass', 'watch']);
+  grunt.registerTask('default', ['browserify', 'sass', 'jshint', 'watch']);
 };
