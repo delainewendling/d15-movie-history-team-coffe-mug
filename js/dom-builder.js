@@ -14,7 +14,6 @@ let movieList = function (searchedMovieData) {
               movieId = searchedMovieData.Search[i].imdbID,
               watched = searchedMovieData.Search[i].Watched,
               favorite = searchedMovieData.Search[i].Favorite;
-      console.log("Id", movieId);
    outputString +=
       `<div class="col s5 card horizontal" style>
        <div class="card-image">
@@ -30,6 +29,15 @@ let movieList = function (searchedMovieData) {
          <div class="card-action">
            <a  class="add-ToWatch" id="${movieId}" href="#">Unwatched</a>
          </div>
+         <div class="card-action">
+           <a  class="delete" id="${movieId}" href="#">Delete</a>
+         </div>
+         <div>
+           <label>
+              Rating
+              <input class="hidden" type="number" id="rating" min="1" max="10" step="1">
+          </label>
+        </div>
        </div>
      </div>`;
  }
@@ -38,7 +46,3 @@ let movieList = function (searchedMovieData) {
 
 module.exports = {movieList};
 
-
-             // <li>${"Type: "} ${Type}</li>
-             // <li>${"Rating: "} ${"3"}</li>
-             // <li>${"Watched/Not: "} ${"true"}</li>

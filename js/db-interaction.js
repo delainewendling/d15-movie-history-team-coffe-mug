@@ -3,7 +3,7 @@
 let $ = require("jquery"),
     main = require("./main.js"),
     domBuilder = require("./dom-builder.js"),
-    id = "1234";
+    userId="";
 
 /// Saving a specific movie to firebase via save button
 let addMovie = function (movieObjToAdd) {
@@ -19,12 +19,24 @@ let addMovie = function (movieObjToAdd) {
   });
 };
 
+/// Saving a specific movie to firebase via save button
+let deleteMovie = function (movieId) {
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "https://movie-hisotry-group-project.firebaseio.com/movies.json",
+      type: "DELETE"
+    }).done(function(data) {
+      resolve(data);
+    });
+  });
+};
+
 /// Retrieve user-saved movies from Firebase
 let getSavedMovies = function (id) {
   console.log("this is the userID", id);
   return new Promise (function (resolve, reject) {
     $.ajax({
-      url: `https://movie-hisotry-group-project.firebaseio.com/movies.json?orderBy="id"&equalTo="${id}"`
+      url: `https://movie-hisotry-group-project.firebaseio.com/movies.json?orderBy="id"&equalTo="${userId}"`
     }).done (function(savedMovieData){
       console.log(savedMovieData);
       resolve(savedMovieData);
@@ -53,4 +65,4 @@ let getSavedMovies = function (id) {
 //   })
 // };
 
-module.exports = {addMovie, getSavedMovies};
+module.exports = {addMovie, getSavedMovies, deleteMovie};

@@ -23,4 +23,3 @@ let getMovieInfo = function() {
 };
 
 module.exports = getMovieInfo;
-
