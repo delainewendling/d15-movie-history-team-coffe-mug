@@ -1,27 +1,27 @@
 "use strict";
 
 //TOAST USER INTERACTIONS
-function addAndPrint(state){
+function addAndPrint(state, evt){
   /*******Adding a Movie*******/
   //if filtered state is search re-run the search call and print
   //if filtered state is hide the movie
 }
 
-function deleteAndPrint (state){
+function deleteAndPrint (state, evt){
   /*******Deleting a Movie*******/
   //if filtered state is search hide movie
   //if filtered state is unwatched hide movie
   //if filtered state is watched hide movie
 }
 
-function rateAndPrint (state){
+function rateAndPrint (state, evt){
   /*******Rating a Movie*******/
   //if filtered state is search re-run search call and print
   //if filtered state is unwatched hide
   //if filtered state is watched re-run from firebase
 }
 
-function slideAndPrint (state){}
+function slideAndPrint (state, evt){}
   /*******Slider*******/
   //call firebase on change of slider
   //rating and deleting will hide that card
