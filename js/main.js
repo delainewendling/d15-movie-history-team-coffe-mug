@@ -45,7 +45,7 @@ $(document).on("click", ".userRating", function(e, rating){
   let movieRating = $(e.target).attr("class").split(' ')[0];
   let movieId = $(e.currentTarget).attr('key');
   let movie = finalSearchList[movieId];
-  addMovie.rateMovie(movieId, {rating: movieRating});
+  addMovie.rateMovie(movieId, {rating: movieRating, watched: true);
 })
 
 
