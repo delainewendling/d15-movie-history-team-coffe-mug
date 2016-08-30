@@ -20,21 +20,21 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
-$(document).on("click", ".add-ToWatch", function() {
+$(document).on("click", ".add-ToWatch", function(e) {
   $("#rating").removeClass("hidden");
-    let movieId = this.id;
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-                url: `http://www.omdbapi.com/?i=${movieId}&plot=short&r=json`,
-                type: "GET"
-            }).done(function(movieInfoFromId) {
-                resolve(movieId);
-            })
-            .then(function(movieInfoFromId) {
-                addMovie.addMovie(movieInfoFromId);
-            });
+    let movieId = $(e.currentTarget).attr('key');
+    console.log("movieID", movieId);
+    let movie = finalSearchList[movieId];
+    movie.watched = 'false';
+    movie.saved = 'true';
+    movie.rating = 0;
+    movie.uid = userId;
+    addMovie.addMovie(movie);
     });
-});
+
+
+
+
 
 
 //Delete movie from FB

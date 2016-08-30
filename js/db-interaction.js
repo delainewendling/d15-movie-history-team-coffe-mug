@@ -42,4 +42,28 @@ let getSavedMovies = function (uid) {
   });
 };
 
+
+/// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
+$(document).on("click", ".add-ToWatch", function() {
+  $("#rating").removeClass("hidden");
+    let movieId = this.id;
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+                url: `http://www.omdbapi.com/?i=${movieId}&plot=short&r=json`,
+                type: "GET"
+            }).done(function(movieInfoFromId) {
+                resolve(movieId);
+            })
+            .then(function(movieInfoFromId) {
+                addMovie.addMovie(movieInfoFromId);
+            });
+    });
+});
+
+
+
+
+
+
+
 module.exports = {addMovie, getSavedMovies, deleteMovie};
