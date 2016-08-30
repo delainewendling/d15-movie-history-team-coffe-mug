@@ -67,6 +67,7 @@ $(document).on("keypress", "#userSearch", function(e) {
 
 function mainSearch() {
   $('.filter').removeClass('teal lighten-5 selectedBtn');
+  $('#ratingSlider').val('0');
   domBuilder.changeBreadCrumb("Search");
       let firebaseMovies = {},
           imdbIdArray = [];
@@ -79,6 +80,7 @@ function mainSearch() {
             .then(function(data) {
               console.log("call to OMDB", data);
               let imdbIdArray = [];
+              if (data.Search.length >0){
               data.Search.forEach(function(movie, index) {
                 imdbIdArray.push(movie.imdbID);
               });
@@ -108,6 +110,10 @@ function mainSearch() {
                     }
                   })
               })
+            } else {
+              finalSearchList = fireBaseMovies;
+              template.showMovies(finalSearchList);
+            }
             })
           })
 }
@@ -163,6 +169,7 @@ function getUntracked (){
   let currentPlace = $('#untracked-btn').html();
   domBuilder.changeBreadCrumb(currentPlace);
   changeSelectedBtn('untracked-btn');
+  $('#ratingSlider').val('0');
   // if ($('#userSearch').val()){
   console.log("untracked");
   //Get rid of saved movies
@@ -172,6 +179,7 @@ function getUntracked (){
 function getUnwatched (){
   console.log("unwatched");
   filterState = "unwatched";
+  $('#ratingSlider').val('0');
   changeSelectedBtn('unwatched-btn');
   let currentPlace = $('#unwatched-btn').html();
   domBuilder.changeBreadCrumb(currentPlace);
@@ -184,6 +192,7 @@ function getUnwatched (){
 function getWatched (){
   console.log("watched");
   filterState = "watched";
+  $('#ratingSlider').val('0');
   changeSelectedBtn('watched-btn');
   let currentPlace = $('#watched-btn').html();
   domBuilder.changeBreadCrumb(currentPlace);
@@ -205,11 +214,13 @@ $(document).on('change', '#ratingSlider', showRatedMovies);
 function showRatedMovies(){
   let ratingValue = $('#ratingSlider').val();
   $('.range-slider__value').val(ratingValue);
+  domBuilder.changeBreadCrumb("Filter Ratings");
   console.log("rating", ratingValue);
   addMovie.getSavedMovies(userId, "rating", ratingValue)
   .then((movies)=>{
     console.log("movies with rating", movies);
     template.showMovies(movies);
+    domBuilder.slideAndPrint();
   })
 }
 

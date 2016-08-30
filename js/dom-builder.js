@@ -34,11 +34,17 @@ function rateAndPrint (state, evt, userID){
   //if filtered state is watched re-run from firebase
 }
 
-function slideAndPrint (state, evt){
+function slideAndPrint (){
   /*******Slider*******/
-  //call firebase on change of slider
-  //rating and deleting will hide that card
+    $('.delete').click(function(e){
+      $(e.currentTarget).closest('.movieDiv').hide();
+    });
+    $('.userRating').click(function(e){
+      //Call firebase if rating is changed
+      //
+    });
 }
+
 
 function goodbyeToast() {
     Materialize.toast('Thank you for visiting our site!', 3000)
