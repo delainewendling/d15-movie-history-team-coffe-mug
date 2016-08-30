@@ -6,4 +6,4 @@ function goodbyeToast() {
  };
 
 
-module.exports = {movieList, goodbyeToast};
+module.exports = {goodbyeToast};
