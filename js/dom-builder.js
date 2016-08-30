@@ -15,11 +15,16 @@ function deleteToast() {
 function ratingToast(movieRating) {
   Materialize.toast(`You rated this ${movieRating}`, 4000)
 }
+function changeBreadCrumb(currentPlace) {
+  console.log('works')
+  $('#curentLocation').html(currentPlace);
+};
 
 
 module.exports = {
     saveToast,
     goodbyeToast,
     deleteToast,
-    ratingToast
+    ratingToast,
+    changeBreadCrumb
 };
