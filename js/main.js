@@ -24,7 +24,11 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.uid = userId;
     addMovie.addMovie(movie);
     domBuilder.saveToast();
-    domBuilder.addAndPrint(filterState, e);
+    if (filterState === "search") {
+      mainSearch();
+    } else {
+      domBuilder.addAndPrint(filterState, e);
+    }
 
 });
 

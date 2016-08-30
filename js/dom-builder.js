@@ -5,6 +5,7 @@ var db = require('./db-interaction.js'),
 
 //TOAST USER INTERACTIONS
 function addAndPrint(state, evt){
+  $(evt.currentTarget).closest('.movieDiv').hide();
   /*******Adding a Movie*******/
   //if filtered state is search re-run the search call and print
   //if filtered state is hide the movie
