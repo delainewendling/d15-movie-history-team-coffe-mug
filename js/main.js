@@ -65,6 +65,8 @@ $('#watched-btn').on('click',function() {
 $(document).on("keypress", "#userSearch", function(e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
+      let currentPlace = "Show Untracked";
+      domBuilder.changeBreadCrumb(currentPlace);
       let firebaseMovies = {};
       addMovie.getSavedMovies(userId)
         .then(function(data){
