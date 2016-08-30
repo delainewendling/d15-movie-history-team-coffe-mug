@@ -10,6 +10,7 @@ require("firebase/database");
 var config = {
   apiKey: fbData.key,
   authDomain: fbData.authUrl,
+  databaseURL: fbData.databaseUrl
 };
 
 firebase.initializeApp(config);
