@@ -69,7 +69,7 @@ $(document).on("keypress", "#userSearch", function(e) {
                     imdbIdArray.splice(index,1);
                     i++;
                     if (i === (arrayLength - 1)) {
-                      console.log("final search list", finalSearchList);
+                      template.showMovies(finalSearchList);
                     }
                   }
                 }
@@ -80,7 +80,7 @@ $(document).on("keypress", "#userSearch", function(e) {
                     finalSearchList[index] = data;
                     i++;
                     if (i === (arrayLength - 1)) {
-                      console.log("final search list", finalSearchList);
+                      template.showMovies(finalSearchList);
                     }
                   })
               })
