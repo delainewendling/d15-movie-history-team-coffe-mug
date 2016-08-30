@@ -1,0 +1,41 @@
+{{#each this}}
+<div class="col s5 card horizontal">
+   <div class="card-image">
+     <img src={{Poster}} width="170" height="250">
+   </div>
+   <div class="card-stacked">
+     <div class="card-content">
+      {{#if saved}}
+       <div class="chip right-align">
+          Delete
+        <i class="close material-icons">close</i>
+      </div>
+      {{/if}}
+       <ul>
+         <li> <h4> {{Title}}</h4></li>
+         <li> <strong> Year released: </strong>{{Year}}</li>
+         <li> <strong> Cast: </strong> {{Actors}} </li>
+       </ul>
+     </div>
+      {{#if saved}}
+        <span class="rating">
+          <i key="{{@key}}" class="1 material-icons userRating {{activateStars rating 1}}">star</i>
+          <i key="{{@key}}" class="2 material-icons userRating {{activateStars rating 2}}">star</i>
+          <i key="{{@key}}" class="3 material-icons userRating {{activateStars rating 3}}">star</i>
+          <i key="{{@key}}" class="4 material-icons userRating {{activateStars rating 4}}">star</i>
+          <i key="{{@key}}" class="5 material-icons userRating {{activateStars rating 5}}">star</i>
+          <i key="{{@key}}" class="6 material-icons userRating {{activateStars rating 6}}">star</i>
+          <i key="{{@key}}" class="7 material-icons userRating {{activateStars rating 7}}">star</i>
+          <i key="{{@key}}" class="8 material-icons userRating {{activateStars rating 8}}">star</i>
+          <i key="{{@key}}" class="9 material-icons userRating {{activateStars rating 9}}">star</i>
+          <i key="{{@key}}" class="10 material-icons userRating {{activateStars rating 10}}">star</i>
+        </span>
+      {{else}}
+        <div class="card-action">
+          <a  class="add-ToWatch" key="{{@key}}" href="#" style="{{checkAuth}}">Add to Watchlist</a>
+        </div>
+      {{/if}}
+    </div>
+</div>
+{{/each}}
+

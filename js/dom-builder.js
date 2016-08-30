@@ -42,5 +42,10 @@ let movieList = function (searchedMovieData) {
       $("#output").append(outputString);
 };
 
-module.exports = {movieList};
+//TOAST USER INTERACTIONS
+function goodbyeToast() {
+ Materialize.toast('Thank you for visiting our site!', 4000)
+ };
 
+
+module.exports = {movieList, goodbyeToast};
