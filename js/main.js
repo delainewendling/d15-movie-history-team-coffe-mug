@@ -20,17 +20,27 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
-$(document).on("click", ".add-ToWatch", function() {
+$(document).on("click", ".add-ToWatch", function(e) {
   $("#rating").removeClass("hidden");
-   
+    let movieId = $(e.currentTarget).attr('key');
+    console.log("movieID", movieId);
+    let movie = finalSearchList[movieId];
+    movie.watched = 'false';
+    movie.saved = 'true';
+    movie.rating = 0;
+    movie.uid = userId;
+    addMovie.addMovie(movie);
 });
+
 
 
 //Delete movie from FB
-$(document).on("click", ".delete", function() {
-    let movieId = this.id;
+$(document).on("click", ".delete", function(e) {
+    let movieId = $(e.currentTarget).attr('key');
+    console.log(movieId);
     addMovie.deleteMovie(movieId);
 });
+
 
 /// Serching for Movies by Title, show results when enter is clicked
 $(document).on("keypress", "#userSearch", function(e) {
