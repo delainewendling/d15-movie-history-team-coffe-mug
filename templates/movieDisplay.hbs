@@ -1,5 +1,5 @@
 {{#each this}}
-<div class="col s5 card horizontal">
+<div class="col s4 card horizontal">
    <div class="card-image">
      <img src={{Poster}} width="170" height="250">
    </div>
@@ -8,11 +8,11 @@
       {{#if saved}}
        <div key="{{@key}}"class="chip delete right-align">
           Delete
-        <i class="close material-icons">close</i>
+        <i class="delete close material-icons">close</i>
       </div>
       {{/if}}
        <ul>
-         <li> <h4> {{Title}}</h4></li>
+         <li> <h5> {{Title}}</h5></li>
          <li> <strong> Year released: </strong>{{Year}}</li>
          <li> <strong> Cast: </strong> {{Actors}} </li>
        </ul>

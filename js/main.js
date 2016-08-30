@@ -30,7 +30,8 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.rating = 0;
     movie.uid = userId;
     addMovie.addMovie(movie);
-    });
+});
+
 
 
 //Delete movie from FB
@@ -50,7 +51,6 @@ $(document).on("click", ".userRating", function(e, rating){
 
 
 /// Serching for Movies by Title, show results when enter is clicked
-
 $(document).on("keypress", "#userSearch", function(e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
