@@ -45,5 +45,5 @@ module.exports = function(grunt) {
   });
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-  grunt.registerTask('default', ['browserify', 'sass', 'jshint', 'watch']);
+  grunt.registerTask('default', ['browserify', 'sass', 'watch']);
 };

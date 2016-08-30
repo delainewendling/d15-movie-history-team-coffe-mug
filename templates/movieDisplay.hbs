@@ -6,7 +6,7 @@
    <div class="card-stacked">
      <div class="card-content">
       {{#if saved}}
-       <div class="chip right-align">
+       <div key="{{@key}}"class="chip delete right-align">
           Delete
         <i class="close material-icons">close</i>
       </div>
@@ -38,4 +38,3 @@
     </div>
 </div>
 {{/each}}
-

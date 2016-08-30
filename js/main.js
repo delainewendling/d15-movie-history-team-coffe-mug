@@ -33,15 +33,13 @@ $(document).on("click", ".add-ToWatch", function(e) {
     });
 
 
-
-
-
-
 //Delete movie from FB
-$(document).on("click", ".delete", function() {
-    let movieId = this.id;
+$(document).on("click", ".delete", function(e) {
+    let movieId = $(e.currentTarget).attr('key');
+    console.log(movieId);
     addMovie.deleteMovie(movieId);
 });
+
 
 /// Serching for Movies by Title, show results when enter is clicked
 
