@@ -26,11 +26,6 @@ $(document).on("click", ".add-ToWatch", function(e) {
       template.showMovies(finalSearchList);
       domBuilder.saveToast();
     })
-    // if (filterState === "search") {
-    //   mainSearch();
-    // } else {
-    //   domBuilder.addAndPrint(filterState, e);
-    // }
 });
 
 //Delete movie from FB
@@ -233,6 +228,7 @@ $(document).on('change', '#ratingSlider', showRatedMovies);
 function showRatedMovies(){
   let ratingValue = $('#ratingSlider').val();
   $('.range-slider__value').val(ratingValue);
+  $('.filter').removeClass('teal lighten-5 selectedBtn');
   domBuilder.changeBreadCrumb("Filter Ratings");
   console.log("rating", ratingValue);
   addMovie.getSavedMovies(userId, "rating", ratingValue)
