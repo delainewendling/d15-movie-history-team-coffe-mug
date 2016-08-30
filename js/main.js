@@ -22,23 +22,26 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.saved = 'true';
     movie.rating = 0;
     movie.uid = userId;
-    addMovie.addMovie(movie);
-    domBuilder.saveToast();
-    if (filterState === "search") {
-      mainSearch();
-    } else {
-      domBuilder.addAndPrint(filterState, e);
-    }
-
+    addMovie.addMovie(movie)
+    .then((data)=>{
+      template.showMovies(finalSearchList);
+      domBuilder.saveToast();
+    })
+    // if (filterState === "search") {
+    //   mainSearch();
+    // } else {
+    //   domBuilder.addAndPrint(filterState, e);
+    // }
 });
 
 //Delete movie from FB
 $(document).on("click", ".delete", function(e) {
     let movieId = $(e.currentTarget).attr('key');
     console.log(movieId);
-    addMovie.deleteMovie(movieId);
-    domBuilder.deleteToast();
-    domBuilder.deleteAndPrint(filterState, e);
+    addMovie.deleteMovie(movieId)
+    .then((data)=>{
+      domBuilder.deleteAndPrint(filterState, e);
+    })
 });
 
 // RATE MOVIE ON FB
@@ -67,8 +70,8 @@ function mainSearch() {
   $('.filter').removeClass('teal lighten-5 selectedBtn');
   domBuilder.changeBreadCrumb("Search");
       let firebaseMovies = {},
-          finalSearchList = {},
           imdbIdArray = [];
+      finalSearchList = {};
       addMovie.getSavedMovies(userId)
         .then(function(data){
           console.log("call to Firebase", data);
@@ -81,7 +84,7 @@ function mainSearch() {
                 imdbIdArray.push(movie.imdbID);
               });
               let i = 0,
-                  arrayLength = imdbIdArray.length;
+                arrayLength = imdbIdArray.length;
               imdbIdArray.forEach(function(ID, index) {
                 for (let savedMovie in firebaseMovies) {
                   if (ID === firebaseMovies[savedMovie].imdbID) {
@@ -89,6 +92,7 @@ function mainSearch() {
                     imdbIdArray.splice(index,1);
                     i++;
                     if (i === (arrayLength - 1)) {
+                      $('#userSearch').val("");
                       template.showMovies(finalSearchList);
                     }
                   }
@@ -100,6 +104,7 @@ function mainSearch() {
                     finalSearchList[index] = data;
                     i++;
                     if (i === (arrayLength - 1)) {
+                      $('#userSearch').val("");
                       template.showMovies(finalSearchList);
                     }
                   })
