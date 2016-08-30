@@ -48,7 +48,6 @@ $(document).on("click", ".delete", function() {
 $(document).on("keypress", "#userSearch", function(e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
-<<<<<<< HEAD
       let firebaseMovies = {};
       addMovie.getSavedMovies(userId)
         .then(function(data){
