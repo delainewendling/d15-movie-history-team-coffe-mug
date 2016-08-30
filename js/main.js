@@ -80,7 +80,7 @@ function mainSearch() {
             .then(function(data) {
               console.log("call to OMDB", data);
               let imdbIdArray = [];
-              if (data.Search.length >0){
+              if (data.Search.length != undefined && data.Search.length > 0){
               data.Search.forEach(function(movie, index) {
                 imdbIdArray.push(movie.imdbID);
               });

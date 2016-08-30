@@ -40,8 +40,7 @@ function slideAndPrint (){
       $(e.currentTarget).closest('.movieDiv').hide();
     });
     $('.userRating').click(function(e){
-      //Call firebase if rating is changed
-      //
+      $(e.currentTarget).closest('.movieDiv').hide();
     });
 }
 
