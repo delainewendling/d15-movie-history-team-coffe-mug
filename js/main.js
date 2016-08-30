@@ -78,7 +78,12 @@ function mainSearch() {
           firebaseMovies = data;
           getMovie.searchMovies()
             .then(function(data) {
-              console.log("call to OMDB", data);
+              console.log("call to OMDB", data.Error);
+              if (data.Error){
+                console.log("inside if");
+                $("#output").html("<h3 class='center-align'> Movie Not Found! </h3> <p class='center-align'> Search Again </p>");
+                $("#userSearch").val("");
+              }
               let imdbIdArray = [];
               if (data.Search.length != undefined && data.Search.length > 0){
               data.Search.forEach(function(movie, index) {
@@ -185,7 +190,12 @@ function getUnwatched (){
   domBuilder.changeBreadCrumb(currentPlace);
   addMovie.getSavedMovies(userId, "watched", "false")
   .then ((userData)=>{
-    template.showMovies(userData);
+    console.log("unwatched movies", userData);
+    if (Object.keys(userData).length === 0) {
+      $("#output").html("<h3 class='center-align'> No Unwatched Movies </h3> <p class='center-align'> Add some by searching and adding to your watchlist </p>");
+    } else {
+      template.showMovies(userData);
+    }
   });
 }
 
@@ -199,7 +209,11 @@ function getWatched (){
   addMovie.getSavedMovies(userId, "watched", true)
     .then ((userData)=>{
       console.log("user data", userData)
+    if (Object.keys(userData).length === 0) {
+      $("#output").html("<h3 class='center-align'> No Watched Movies </h3> <p class='center-align'> Add some by rating the movies you have saved </p>");
+    } else {
       template.showMovies(userData);
+    }
     });
 }
 
@@ -218,9 +232,13 @@ function showRatedMovies(){
   console.log("rating", ratingValue);
   addMovie.getSavedMovies(userId, "rating", ratingValue)
   .then((movies)=>{
-    console.log("movies with rating", movies);
-    template.showMovies(movies);
-    domBuilder.slideAndPrint();
+    console.log("movies with that rating", movies);
+    if (Object.keys(movies).length === 0) {
+      $("#output").html(`<h3 class='center-align'> No Movies with a rating of ${ratingValue} yet </h3>`);
+    } else {
+      template.showMovies(movies);
+      domBuilder.slideAndPrint();
+    }
   })
 }
 
