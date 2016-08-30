@@ -54,7 +54,7 @@ let getSavedMovies = function (uid, property, value) {
       console.log("results?", movieData);
       let filteredMovies = {};
       for (var prop in movieData){
-          if (movieData[prop][property] === value){
+          if (movieData[prop][property] == value){
             filteredMovies[prop] = movieData[prop];
             console.log("filtered movies so far", filteredMovies);
           }

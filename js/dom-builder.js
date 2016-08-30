@@ -1,5 +1,8 @@
 "use strict";
 
+var db = require('./db-interaction.js'),
+    template = require('./template.js');
+
 //TOAST USER INTERACTIONS
 function addAndPrint(state, evt){
   /*******Adding a Movie*******/
@@ -8,20 +11,28 @@ function addAndPrint(state, evt){
 }
 
 function deleteAndPrint (state, evt){
-  /*******Deleting a Movie*******/
-  //if filtered state is search hide movie
-  //if filtered state is unwatched hide movie
-  //if filtered state is watched hide movie
+   $(evt.currentTarget).closest('.movieDiv').hide();
 }
 
-function rateAndPrint (state, evt){
+function rateAndPrint (state, evt, userID){
+    switch (state) {
+    case "unwatched":
+      $(evt.currentTarget).closest('.movieDiv').hide();
+      break;
+    case "watched":
+      db.getSavedMovies(userID, "watched", true)
+        .then((data)=>{
+          template.showMovies(data);
+        });
+      break;
+  }
   /*******Rating a Movie*******/
-  //if filtered state is search re-run search call and print
+  //if filtered state is search re-run search call and print xx
   //if filtered state is unwatched hide
   //if filtered state is watched re-run from firebase
 }
 
-function slideAndPrint (state, evt){}
+function slideAndPrint (state, evt){
   /*******Slider*******/
   //call firebase on change of slider
   //rating and deleting will hide that card

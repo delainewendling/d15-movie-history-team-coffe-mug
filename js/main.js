@@ -44,7 +44,11 @@ $(document).on("click", ".userRating", function(e, rating){
   let movie = finalSearchList[movieId];
   addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
   domBuilder.ratingToast(movieRating);
-  domBuilder.rateAndPrint(filterState, e);
+  if (filterState === "search") {
+    mainSearch();
+  } else {
+    domBuilder.rateAndPrint(filterState, e, userId);
+  }
 })
 
 
@@ -71,6 +75,10 @@ $(document).on("keypress", "#userSearch", function(e) {
   filterState = "search";
     var key = e.which || e.keyCode;
     if (key === 13) {
+      mainSearch();
+        }})
+
+function mainSearch() {
       let firebaseMovies = {};
       addMovie.getSavedMovies(userId)
         .then(function(data){
@@ -109,8 +117,7 @@ $(document).on("keypress", "#userSearch", function(e) {
               })
             })
           })
-          }
-        })
+}
 
 //-------------------------------------------
 //authentication starts here
@@ -178,10 +185,11 @@ function getWatched (){
   console.log("watched");
   filterState = "watched";
   changeSelectedBtn('watched-btn');
-  addMovie.getSavedMovies(userId, "watched", "true")
-  .then ((userData)=>{
-    template.showMovies(userData);
-  });
+  addMovie.getSavedMovies(userId, "watched", true)
+    .then ((userData)=>{
+      console.log("user data", userData)
+      template.showMovies(userData);
+    });
 }
 
 function changeSelectedBtn (btnId){
