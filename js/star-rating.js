@@ -15,6 +15,5 @@ function starHoverOn(evt) {
 function starHoverOff(evt) {
   let $hoverStar = $(evt.currentTarget);
   $hoverStar.removeClass('current-star hover-star');
-  $hoverStar.siblings().removeClass('hover-star');
-  $hoverStar.siblings().removeClass('black-star');
+  $hoverStar.siblings().removeClass('black-star hover-star');
 }

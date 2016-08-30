@@ -11,14 +11,6 @@ let addMovie = require("./db-interaction.js"),
     slider = require('./slider'),
     starRating = require('./star-rating.js');
 
-// AUTO LOGIN, SAVES USERID TO GLOBAL VARIABLE
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    userId = firebase.auth().currentUser.uid;
-    console.log("This user has logged in: ",userId);
-  }
-});
-
 /// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
 $(document).on("click", ".add-ToWatch", function(e) {
   $("#rating").removeClass("hidden");
@@ -51,6 +43,7 @@ $(document).on("click", ".userRating", function(e, rating){
   addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
   domBuilder.ratingToast(movieRating);
 })
+
 // CHANGES BREAD CRUMB STATUS ACCORDING TO ACTIVE FILTER
 $('#untracked-btn').on('click',function() {
   let currentPlace = $('#untracked-btn').html();
@@ -66,7 +59,6 @@ $('#watched-btn').on('click',function() {
   let currentPlace = $('#watched-btn').html();
   domBuilder.changeBreadCrumb(currentPlace);
 })
-
 
 
 /// Serching for Movies by Title, show results when enter is clicked
@@ -121,21 +113,32 @@ $("#auth-btn").click(function() {
   $(".landingPage").addClass('hide');
     login.logInGoogle()
         .then(function(result) {
-            let user = result.user;
-            console.log("logged in user", user.uid);
-            userId = user.uid;
+            userId = result.user.uid;
             $("#auth-btn").addClass('hide');
             $("#auth-btnLogOut").removeClass('hide');
             $(".filters").removeClass('hide');
         });
 });
 
-$("#auth-btnLogOut").on("click", function() {
-  console.log('goodbye');
-    login.logOutGoogle();
-    $("#auth-btnLogOut").addClass('hide');
-    $("#auth-btn").removeClass('hide');
-    $(".filters").addClass('hide');
 
-    domBuilder.goodbyeToast();
+// AUTO LOGIN, SAVES USERID TO GLOBAL VARIABLE
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    userId = firebase.auth().currentUser.uid;
+    $(".landingPage").hide();
+    $("#auth-btn").hide();
+    $("#auth-btnLogOut").removeClass("hide");
+  }
+});
+
+$("#auth-btnLogOut").on("click", function() {
+    login.logOutGoogle()
+      .then(function(){
+        userId = "";
+        $(".landingPage").show();
+        $("#auth-btnLogOut").addClass('hide');
+        $("#auth-btn").show();
+        $(".filters").addClass('hide');
+        domBuilder.goodbyeToast();
+      })
 });
