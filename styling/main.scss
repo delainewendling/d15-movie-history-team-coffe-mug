@@ -2,6 +2,16 @@
   color:black;
 }
 
+.movieCard {
+  height: 300px;
+  overflow: scroll;
+}
+
+#curentLocation {
+  color: #aaa;
+  margin-left: 10px;
+}
+
 .active-star {
   color: goldenrod;
 }

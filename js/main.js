@@ -55,25 +55,6 @@ $(document).on("click", ".userRating", function(e, rating){
   }
 })
 
-
-// CHANGES BREAD CRUMB STATUS ACCORDING TO ACTIVE FILTER
-$('#untracked-btn').on('click',function() {
-  let currentPlace = $('#untracked-btn').html();
-  domBuilder.changeBreadCrumb(currentPlace);
-})
-
-$('#unwatched-btn').on('click',function() {
-  let currentPlace = $('#unwatched-btn').html();
-  domBuilder.changeBreadCrumb(currentPlace);
-})
-
-$('#watched-btn').on('click',function() {
-  let currentPlace = $('#watched-btn').html();
-  domBuilder.changeBreadCrumb(currentPlace);
-})
-
-
-
 /// Serching for Movies by Title, show results when enter is clicked
 $(document).on("keypress", "#userSearch", function(e) {
   filterState = "search";
@@ -83,6 +64,8 @@ $(document).on("keypress", "#userSearch", function(e) {
         }})
 
 function mainSearch() {
+  $('.filter').removeClass('teal lighten-5 selectedBtn');
+  domBuilder.changeBreadCrumb("Search");
       let firebaseMovies = {},
           finalSearchList = {},
           imdbIdArray = [];
@@ -146,6 +129,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     userId = firebase.auth().currentUser.uid;
     $(".landingPage").hide();
     $("#auth-btn").hide();
+    $("#userSearch").val("");
+    $('#output').html('');
     $("#auth-btnLogOut").removeClass("hide");
     $(".filters").removeClass('hide');
   }
@@ -157,34 +142,35 @@ $("#auth-btnLogOut").on("click", function() {
         userId = "";
         $(".landingPage").show();
         $("#auth-btnLogOut").addClass('hide');
+        $("#userSearch").val("");
+        $('#output').html('');
         $("#auth-btn").show();
         $(".filters").addClass('hide');
         domBuilder.goodbyeToast();
       })
 });
 
-
-//Filter Logic
+//Filter Logic and CHANGE BREAD CRUMB STATUS ACCORDING TO ACTIVE FILTER
 $(document).on('click', '#untracked-btn', getUntracked);
 $(document).on('click', '#unwatched-btn', getUnwatched);
 $(document).on('click', '#watched-btn', getWatched);
 
 function getUntracked (){
+  let currentPlace = $('#untracked-btn').html();
+  domBuilder.changeBreadCrumb(currentPlace);
   changeSelectedBtn('untracked-btn');
-  if ($('#userSearch').val()){
-    mainSearch();
-    console.log("untracked");
-   //Get rid of saved movies
-    $('.movieCard[saved=true]').parent('.movieDiv').hide();
-  } else {
-    filterState = "untracked";
-  }
+  // if ($('#userSearch').val()){
+  console.log("untracked");
+  //Get rid of saved movies
+  $('.movieCard[saved=true]').parent('.movieDiv').hide();
 }
 
 function getUnwatched (){
   console.log("unwatched");
   filterState = "unwatched";
   changeSelectedBtn('unwatched-btn');
+  let currentPlace = $('#unwatched-btn').html();
+  domBuilder.changeBreadCrumb(currentPlace);
   addMovie.getSavedMovies(userId, "watched", "false")
   .then ((userData)=>{
     template.showMovies(userData);
@@ -195,6 +181,8 @@ function getWatched (){
   console.log("watched");
   filterState = "watched";
   changeSelectedBtn('watched-btn');
+  let currentPlace = $('#watched-btn').html();
+  domBuilder.changeBreadCrumb(currentPlace);
   addMovie.getSavedMovies(userId, "watched", true)
     .then ((userData)=>{
       console.log("user data", userData)
