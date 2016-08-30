@@ -24,7 +24,7 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.uid = userId;
     addMovie.addMovie(movie);
     domBuilder.saveToast();
-    domBuilder.addAndPrint();
+    domBuilder.addAndPrint(filterState);
 
 });
 
@@ -34,7 +34,7 @@ $(document).on("click", ".delete", function(e) {
     console.log(movieId);
     addMovie.deleteMovie(movieId);
     domBuilder.deleteToast();
-    domBuilder.deleteAndPrint();
+    domBuilder.deleteAndPrint(filterState);
 });
 
 // RATE MOVIE ON FB
@@ -44,7 +44,7 @@ $(document).on("click", ".userRating", function(e, rating){
   let movie = finalSearchList[movieId];
   addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
   domBuilder.ratingToast(movieRating);
-  domBuilder.rateAndPrint();
+  domBuilder.rateAndPrint(filterState);
 })
 
 
