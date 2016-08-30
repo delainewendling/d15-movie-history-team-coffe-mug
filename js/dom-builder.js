@@ -9,6 +9,7 @@ function saveToast() {
     Materialize.toast('Saved!', 4000)
 };
 
+
 function deleteToast() {
     Materialize.toast('Deleted!', 4000)
 }
@@ -28,3 +29,4 @@ module.exports = {
     ratingToast,
     changeBreadCrumb
 };
+

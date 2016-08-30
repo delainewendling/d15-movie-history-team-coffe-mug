@@ -1,5 +1,6 @@
 {{#each this}}
-<div class="col s4 card horizontal">
+<div class="movieDiv">
+<div class="col s6 card horizontal movieCard z-depth-1" saved="{{saved}}">
    <div class="card-image">
      <img src={{Poster}} width="170" height="250">
    </div>
@@ -36,5 +37,6 @@
         </div>
       {{/if}}
     </div>
+</div>
 </div>
 {{/each}}

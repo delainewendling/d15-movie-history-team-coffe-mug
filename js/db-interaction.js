@@ -32,11 +32,6 @@ let rateMovie = function (movieObjToRate, prop) {
   });
 };
 
-
-
-
-
-
 /// Saving a specific movie to firebase via save button
 let deleteMovie = function (movieId) {
   return new Promise(function (resolve, reject) {
@@ -50,39 +45,34 @@ let deleteMovie = function (movieId) {
 };
 
 /// Retrieve user-saved movies from Firebase
-let getSavedMovies = function (uid) {
+let getSavedMovies = function (uid, property, value) {
   return new Promise (function (resolve, reject) {
     $.ajax({
       url: `https://reel-good-movie-history.firebaseio.com/movies.json?orderBy=\"uid\"&equalTo=\"${uid}\"`,
       type: "GET"
-    }).done (function(savedMovieData){
-      resolve(savedMovieData);
+    }).done (function(movieData){
+      console.log("results?", movieData);
+      let filteredMovies = {};
+      for (var prop in movieData){
+          if (movieData[prop][property] === value){
+            filteredMovies[prop] = movieData[prop];
+            console.log("filtered movies so far", filteredMovies);
+          }
+      }
+      resolve(filteredMovies);
     });
   });
 };
 
-
-/// SAVE BUTTON USED TO SEND MOVIE OBJ TO FB TO SAVE
-$(document).on("click", ".add-ToWatch", function() {
-  $("#rating").removeClass("hidden");
-    let movieId = this.id;
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-                url: `http://www.omdbapi.com/?i=${movieId}&plot=short&r=json`,
-                type: "GET"
-            }).done(function(movieInfoFromId) {
-                resolve(movieId);
-            })
-            .then(function(movieInfoFromId) {
-                addMovie.addMovie(movieInfoFromId);
-            });
-    });
-});
-
-
-
-
-
-
+// let getFilteredMovies = function (uid){
+//   return new Promise (function (resolve, reject) {
+//     $.ajax({
+//       url: `https://reel-good-movie-history.firebaseio.com/movies.json?&orderBy=\"uid\"&equalTo=\"${uid}\"&${prop}\"=\"${value}\"`
+//     }).done (function(movieData){
+//       console.log("results?", movieData);
+//       resolve(movieData);
+//     });
+//   });
+// }
 
 module.exports = {addMovie, getSavedMovies, deleteMovie, rateMovie};
