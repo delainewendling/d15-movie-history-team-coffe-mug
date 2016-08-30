@@ -128,6 +128,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     $(".landingPage").hide();
     $("#auth-btn").hide();
     $("#auth-btnLogOut").removeClass("hide");
+    $(".filters").removeClass('hide');
   }
 });
 
