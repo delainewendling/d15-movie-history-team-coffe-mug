@@ -24,6 +24,8 @@ $(document).on("click", ".add-ToWatch", function(e) {
     movie.uid = userId;
     addMovie.addMovie(movie);
     domBuilder.saveToast();
+    domBuilder.addAndPrint();
+
 });
 
 //Delete movie from FB
@@ -31,7 +33,8 @@ $(document).on("click", ".delete", function(e) {
     let movieId = $(e.currentTarget).attr('key');
     console.log(movieId);
     addMovie.deleteMovie(movieId);
-    domBuilder.deleteToast()
+    domBuilder.deleteToast();
+    domBuilder.deleteAndPrint();
 });
 
 // RATE MOVIE ON FB
@@ -41,24 +44,9 @@ $(document).on("click", ".userRating", function(e, rating){
   let movie = finalSearchList[movieId];
   addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
   domBuilder.ratingToast(movieRating);
+  domBuilder.rateAndPrint();
 })
 
-function checkStateAndPrint(){
-  /*******Adding a Movie*******/
-  //if filtered state is search re-run the search call and print
-  //if filtered state is hide the movie
-  /*******Deleting a Movie*******/
-  //if filtered state is search hide movie
-  //if filtered state is unwatched hide movie
-  //if filtered state is watched hide movie
-  /*******Rating a Movie*******/
-  //if filtered state is search re-run search call and print
-  //if filtered state is unwatched hide
-  //if filtered state is watched re-run from firebase
-  /*******Slider*******/
-  //call firebase on change of slider
-  //rating and deleting will hide that card
-}
 
 // CHANGES BREAD CRUMB STATUS ACCORDING TO ACTIVE FILTER
 $('#untracked-btn').on('click',function() {
