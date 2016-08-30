@@ -1,32 +1,55 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Movie History</title>
-  <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" src="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
- <div class="container2">
- <div class="container">
-   <nav class="row box green lighten-4">
-     <div class="nav-wrapper">
-         <input class="form-control" id="userSearch" type="text" placeholder="search here...">
-         <button class="right"><a  id="auth-btn" class="blue-text text-darken-4" href="#" title="login">Login/Register/Logout</a></button>
-     </div>
-   </nav>
-   <h2>Coffee Mug Movie Presents</h2>
-   <div class="row">
-     <button id="untracked-btn" class="btn">Show Untracked</button>
-     <button id="unwatched-btn" class="btn">Show Unwatched</button>
-     <button id="watched-btn" class="btn">Show Watched</button>
-     <button id="Favorites-btn" class="btn">Favorites</button>
-   </div>
- </div>
- <div id="output" class="row box"></div>
- </div>
 
-<script type="text/javascript" src="src/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="dist/app.js"></script>
+<head>
+    <title>Movie History</title>
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" src="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+    <div class="container2">
+        <div class="container">
+            <nav class="row box green lighten-4">
+                <div class="nav-wrapper">
+                    <input class="form-control" id="userSearch" type="text" placeholder="search here...">
+                    <button id="auth-btn" class="right blue-text text-darken-4" href="#" title="login">Login/Register</button>
+                    <button id="auth-btnLogOut" class="right hide blue-text text-darken-4">Logout</button>
+                </div>
+            </nav>
+            <h2><strong><i>REEL</i></strong> Mug Movie Presents</h2>
+            <!-- NAV BAR IS HARD CODED IN, DO NOT REMOVE -->
+            <div class="row">
+                <div class="filters hide">
+                    <button id="untracked-btn" class="btn">Show Untracked</button>
+                    <button id="unwatched-btn" class="btn">Show Unwatched</button>
+                    <button id="watched-btn" class="btn">Show Watched</button>
+                    <button id="Favorites-btn" class="btn">Favorites</button>
+                </div>
+            </div>
+
+            <!-- LANDING PAGE IS USED TO INFORM USER TO LOGIN USING GOOGLE AUTH WILL DISSAPEAR ONCE USER PRESSES LOGIN BUTTON OR CLICKS ENTER ON THE SEARCH TAB. ONCE AGAIN HARD CODED IN PLEASE DO NOT DELETE -->
+            <div class="valign-wrapper">
+                <div class="col offset-md2 md-5 valign landingPage">
+                    <h5 class="">Please go ahead and login using your <strong>Google</strong> account!</h5>
+                    <p>
+                        You are now entering into the most premier movie database ever created.
+                    </p>
+                    <p>
+                        You can still search for movies even without logging in!
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+        <div id="output" class="row box"></div>
+    </div>
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js "></script>
+    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="dist/app.js"></script>
 </body>
+
 </html>
