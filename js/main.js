@@ -9,7 +9,8 @@ let addMovie = require("./db-interaction.js"),
     login = require("./user.js"),
     template = require('./template.js'),
     slider = require('./slider'),
-    starRating = require('./star-rating.js');
+    starRating = require('./star-rating.js'),
+    filterState = null;
 
 // AUTO LOGIN, SAVES USERID TO GLOBAL VARIABLE
 firebase.auth().onAuthStateChanged(function(user) {
@@ -32,8 +33,6 @@ $(document).on("click", ".add-ToWatch", function(e) {
     addMovie.addMovie(movie);
 });
 
-
-
 //Delete movie from FB
 $(document).on("click", ".delete", function(e) {
     let movieId = $(e.currentTarget).attr('key');
@@ -46,12 +45,13 @@ $(document).on("click", ".userRating", function(e, rating){
   let movieRating = $(e.target).attr("class").split(' ')[0];
   let movieId = $(e.currentTarget).attr('key');
   let movie = finalSearchList[movieId];
-  addMovie.rateMovie(movieId, {rating: movieRating, watched: true);
+  addMovie.rateMovie(movieId, {rating: movieRating, watched: true});
 })
 
 
 /// Serching for Movies by Title, show results when enter is clicked
 $(document).on("keypress", "#userSearch", function(e) {
+  filterState = "search";
     var key = e.which || e.keyCode;
     if (key === 13) {
       let firebaseMovies = {};
@@ -120,3 +120,43 @@ $("#auth-btnLogOut").on("click", function() {
 
     domBuilder.goodbyeToast();
 });
+
+
+//Filter Logic
+$(document).on('click', '#untracked-btn', getUntracked);
+$(document).on('click', '#unwatched-btn', getUnwatched);
+$(document).on('click', '#watched-btn', getWatched);
+
+function getUntracked (){
+  console.log("untracked");
+  filterState = "untracked";
+  changeSelectedBtn('untracked-btn');
+ //Get rid of saved movies
+  $('.movieCard[saved=true]').parent('.movieDiv').hide();
+}
+
+function getUnwatched (){
+  console.log("unwatched");
+  filterState = "unwatched";
+  changeSelectedBtn('unwatched-btn');
+  addMovie.getSavedMovies(userId, "watched", "false")
+  .then ((userData)=>{
+    template.showMovies(userData);
+  });
+}
+
+function getWatched (){
+  console.log("watched");
+  filterState = "watched";
+  changeSelectedBtn('watched-btn');
+  addMovie.getSavedMovies(userId, "watched", "true")
+  .then ((userData)=>{
+    template.showMovies(userData);
+  });
+}
+
+function changeSelectedBtn (btnId){
+  $('.filter').removeClass('teal lighten-5');
+  $(`#${btnId}`).addClass('teal lighten-5 selectedBtn');
+}
+
