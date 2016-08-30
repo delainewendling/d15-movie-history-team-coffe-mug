@@ -2,8 +2,7 @@
 
 let $ = require("jquery"),
     main = require("./main.js"),
-    domBuilder = require("./dom-builder.js"),
-    userId="";
+    domBuilder = require("./dom-builder.js");
 
 /// Saving a specific movie to firebase via save button
 let addMovie = function (movieObjToAdd) {
@@ -32,18 +31,15 @@ let deleteMovie = function (movieId) {
 };
 
 /// Retrieve user-saved movies from Firebase
-let getSavedMovies = function (id) {
-  console.log("this is the userID", id);
+let getSavedMovies = function (uid) {
   return new Promise (function (resolve, reject) {
     $.ajax({
-      url: `https://reel-good-movie-history.firebaseio.com/movies.json?orderBy="id"&equalTo="${id}"`
+      url: `https://reel-good-movie-history.firebaseio.com/movies.json?orderBy=\"uid\"&equalTo=\"${uid}\"`,
+      type: "GET"
     }).done (function(savedMovieData){
-      console.log(savedMovieData);
       resolve(savedMovieData);
     });
   });
 };
-
-
 
 module.exports = {addMovie, getSavedMovies, deleteMovie};
