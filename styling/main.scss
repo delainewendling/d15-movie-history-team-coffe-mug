@@ -41,6 +41,16 @@ i {
   margin-top: 35px;
 }
 
+#userSearch {
+  padding: 10px;
+}
 
+::-webkit-input-placeholder {
+  color: black;
+}
 
+#auth-btn,
+#auth-btnLogOut {
+  margin-top: 12px;
+}
 
