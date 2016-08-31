@@ -138,8 +138,8 @@ $("#auth-btn").click(function() {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     userId = firebase.auth().currentUser.uid;
-    $(".landingPage").hide();
-    $("#auth-btn").hide();
+    $(".landingPage").addClass('hide');
+    $("#auth-btn").addClass('hide');
     $("#userSearch").val("");
     $('#output').html('');
     $("#auth-btnLogOut").removeClass("hide");
@@ -151,11 +151,11 @@ $("#auth-btnLogOut").on("click", function() {
     login.logOutGoogle()
       .then(function(){
         userId = "";
-        $(".landingPage").show();
+        $(".landingPage").removeClass('hide');
         $("#auth-btnLogOut").addClass('hide');
         $("#userSearch").val("");
         $('#output').html('');
-        $("#auth-btn").show();
+        $("#auth-btn").removeClass('hide');
         $(".filters").addClass('hide');
         domBuilder.goodbyeToast();
       })
